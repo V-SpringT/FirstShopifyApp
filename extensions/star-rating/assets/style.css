@@ -1,0 +1,40 @@
+.star-rating{
+  cursor: pointer;
+}
+  .star {
+    font-size: 24px;
+    color: lightgray;
+  }
+  .star:hover {
+    cursor: pointer;
+  }
+
+  .star.filled {
+    color: gold;
+  }
+  
+  .custom-button {
+    width: 30%;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: #3d8c41;
+  }
+  
+  .review-bar{
+    display: flex;
+    flex-direction: column;
+  }

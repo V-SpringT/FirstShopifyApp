@@ -1,0 +1,6 @@
+name = "star-rating"
+type = "theme"
+version = "1.0.0"
+[[target]]
+type = "section"
+name= "main"

@@ -1,0 +1,62 @@
+<head>
+  {{ 'style.css' | asset_url | stylesheet_tag }}
+  <script>
+    var customerId = {{ customer.id | json }};
+    var productId = {{ product.id | json }};
+    var shopDomain = {{shop.permanent_domain | json}};
+  </script>
+</head>
+
+
+<div class="review-bar" data ="{{customer.id}}">
+  <div class="product-rating">
+    <span id="avg"></span>/5
+    <span>Lượt đánh giá: </span><span id="total"></span>
+  </div>
+  <div id="rating-value" class="star-rating" data-rating="{{ rating }}">
+  {% for i in (1..5) %}
+    <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+  {% endfor %}
+  </div>
+  <button type="button" id="myButton" class="custom-button">
+      Review
+  </button>
+</div>   
+
+
+<script src="{{ 'script.js' | asset_url }}" defer></script>
+{% schema %}
+{
+  "name": "Product Rating",
+  "target": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "rating_value",
+      "label": "Rating Value",
+      "min": 1,
+      "max": 5,
+      "step": 0.1,
+      "default": 4.5
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "Customer Rating"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#FFD700"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating_count",
+      "label": "Show Rating Count",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
