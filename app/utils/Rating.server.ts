@@ -1,4 +1,4 @@
-import db from "../../db.server";
+import db from "../db.server";
 
 
 export const createRating = async ({shop, productId, CustomerId, star}: {shop: string, productId: string, CustomerId : string, star: number})=>{
@@ -52,4 +52,10 @@ export const getAllRating = async ({shop, productId, CustomerId}: {shop: string,
     });
 
     return ratings
+}
+
+export const getAllRatingApp = async ()=>{
+    const ratings = await db.rating.findMany({});
+
+    return ratings;
 }

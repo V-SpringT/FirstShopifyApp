@@ -1,4 +1,4 @@
-import db from "../../db.server";
+import db from "../db.server";
 import {getAllRating} from "./Rating.server"
 export const AvgRating = async ({shop, productId}: {shop: string, productId: string}) => {
     const avgRate = await db.avgRating.findUnique({
@@ -53,17 +53,10 @@ export const updateAvgRating = async ({shop, productId, CustomerId}: {shop: stri
     return {avgStar, lenRating}
 }
 
-// export const getAvgRating = async ({shop, productId, CustomerId}: {shop: string, productId: string, CustomerId : string})=>{
-//     const avgRating = await db.avgRating.findUnique({
-//         where: {
-//             shop_productId:{
-//                 shop: shop,
-//                 productId: productId
-//             }
-//         }
-//     });
-//     return avgRating
-// }
+export const getAllAvgRating = async ()=>{
+    const avgRatings = await db.avgRating.findMany({});
+    return avgRatings
+}
 
 
 

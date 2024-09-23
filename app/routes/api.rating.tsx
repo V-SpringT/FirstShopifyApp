@@ -2,8 +2,8 @@ import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { cors } from "remix-utils/cors";
 import { authenticate } from "../shopify.server";
-import { AvgRating, AvgRatingInit, updateAvgRating } from "./utils/AvgRating.server";
-import { createRating, getRating, updateRating } from "./utils/Rating.server";
+import { AvgRating, AvgRatingInit, updateAvgRating } from "../utils/AvgRating.server";
+import { createRating, getRating, updateRating } from "../utils/Rating.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   await authenticate.public.appProxy(request);
@@ -44,7 +44,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const CustomerId = String(data.customerId) as string;
+  const CustomerId = String(data.customerId);
   const productId = String(data.productId);
   const shop = String(data.shop);
   const star = parseInt(String(data.ratingValue))
@@ -73,7 +73,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   const response = json({
     message: "Product removed from your wishlist",
-    method: request.method,
+    method: request.method,  
     avgRate: {
       avgStar : avgStar,
       starValue :  star,
