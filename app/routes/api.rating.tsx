@@ -39,7 +39,8 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  await authenticate.public.appProxy(request);
+  await authenticate.public.appProxy(request)
+  console.log("haha")
 
   const formData = await request.formData();
   const data = Object.fromEntries(formData);

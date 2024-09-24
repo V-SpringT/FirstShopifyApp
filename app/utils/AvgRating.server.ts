@@ -1,5 +1,6 @@
 import db from "../db.server";
-import {getAllRating} from "./Rating.server"
+import {getAllRating, deleteWithProduct} from "./Rating.server"
+
 export const AvgRating = async ({shop, productId}: {shop: string, productId: string}) => {
     const avgRate = await db.avgRating.findUnique({
         where: {
@@ -58,6 +59,17 @@ export const getAllAvgRating = async ()=>{
     return avgRatings
 }
 
+export const deleteAvg = async ({shop, productId}: {shop: string, productId: string})=>{
+    console.log(shop, productId)
+    await db.avgRating.deleteMany({
+        where: {
+          shop: shop,
+          productId: productId
+        }
+      })
+
+    await deleteWithProduct({shop,productId})
+}
 
 
 

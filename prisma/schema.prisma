@@ -41,6 +41,13 @@ model Rating {
 
   @@unique([shop, ProductId, CustomerId])
 }
+model Settings {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+
+  @@map("settings")
+}
 
 model AvgRating {
   shop String   

@@ -1,3 +1,4 @@
+
 import db from "../db.server";
 
 
@@ -58,4 +59,23 @@ export const getAllRatingApp = async ()=>{
     const ratings = await db.rating.findMany({});
 
     return ratings;
+}
+
+export const deleteRating = async ({shop, productId, customerId}: {shop: string, productId: string, customerId : string})=>{
+    await db.rating.deleteMany({
+        where:{
+            shop: shop,
+            ProductId: productId,
+            CustomerId: customerId
+        }
+    })
+}
+
+export const deleteWithProduct = async ({shop, productId}: {shop: string, productId: string})=>{
+    await db.rating.deleteMany({
+        where:{
+            shop: shop,
+            ProductId: productId,
+        }
+    })
 }
